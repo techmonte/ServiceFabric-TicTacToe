@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="ActorTicTacToeApplicationType" ApplicationTypeVersion="1.0.1" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="GameActorService_PartitionCount" DefaultValue="10" />
+    <Parameter Name="GameActorService_MinReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="GameActorService_TargetReplicaSetSize" DefaultValue="3" />
+    <Parameter Name="PlayerActorService_PartitionCount" DefaultValue="10" />
+    <Parameter Name="PlayerActorService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="PlayerActorService_TargetReplicaSetSize" DefaultValue="1" />
+  </Parameters>
+  <!-- Importa ServiceManifest da ServicePackage. ServiceManifestName e ServiceManifestVersion 
+       devono corrispondere agli attributi Name e Version dell'elemento ServiceManifest 
+       definito nel file ServiceManifest.xml. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="GamePkg" ServiceManifestVersion="1.0.1" />
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="PlayerPkg" ServiceManifestVersion="1.0.0" />
+  </ServiceManifestImport>
+  <DefaultServices>
+    <Service Name="GameActorService" GeneratedIdRef="d3604d05-a3e0-454a-8af8-ed6e49c05c81|Persisted">
+      <StatefulService ServiceTypeName="GameActorServiceType" TargetReplicaSetSize="[GameActorService_TargetReplicaSetSize]" MinReplicaSetSize="[GameActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[GameActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="PlayerActorService" GeneratedIdRef="0ae8e725-810c-4d19-bd50-ca52a01ad0c2|None">
+      <StatefulService ServiceTypeName="PlayerActorServiceType" TargetReplicaSetSize="[PlayerActorService_TargetReplicaSetSize]" MinReplicaSetSize="[PlayerActorService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[PlayerActorService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <!-- Nella sezione seguente vengono create istanze di tipi di servizio durante la creazione
+         di un'istanza di questo tipo di applicazione. È anche possibile creare una o più istanze del tipo di servizio
+         con il modulo ServiceFabric di PowerShell.
+         
+         L'attributo ServiceTypeName seguente deve corrispondere al nome definito nel file ServiceManifest.xml importato. -->
+  </DefaultServices>
+</ApplicationManifest>
