@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PublishProfile xmlns="http://schemas.microsoft.com/2015/05/fabrictools">
+  <!-- ClusterConnectionParameters consente di specificare i parametri di PowerShell da usare per la connessione al cluster di Service Fabric.
+       I parametri validi sono tutti quelli accettati dal cmdlet Connect-ServiceFabricCluster.
+       
+       Per un cluster locale in genere non si usa alcun parametro.
+         Ad esempio: <ClusterConnectionParameters />
+  -->
+  <ClusterConnectionParameters />
+  <ApplicationParameterFile Path="..\ApplicationParameters\Local.1Node.xml" />
+  <UpgradeDeployment Mode="UnmonitoredAuto" Enabled="false">
+    <Parameters UpgradeReplicaSetCheckTimeoutSec="1" Force="True" />
+  </UpgradeDeployment>
+</PublishProfile>

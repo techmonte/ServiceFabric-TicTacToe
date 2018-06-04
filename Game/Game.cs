@@ -21,6 +21,9 @@ namespace Game
     [StatePersistence(StatePersistence.Persisted)]
     internal class Game : Actor, IGame
     {
+        public Game(ActorService actorService, ActorId actorId) : base(actorService, actorId)
+        {
+        }
 
         /// <summary>
         /// Questo metodo viene chiamato ogni volta che si attiva un actor.
