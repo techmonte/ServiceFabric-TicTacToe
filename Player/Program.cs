@@ -10,16 +10,17 @@ namespace Player
     internal static class Program
     {
         /// <summary>
-        /// Questo è il punto di ingresso del processo host del servizio.
+        /// This is the entry point of the service host process.
         /// </summary>
         private static void Main()
         {
             try
             {
-                // Questa riga consente di registrare un Servizio Actor per ospitare la classe actor con il runtime di Service Fabric.
-                // Il contenuto dei file ServiceManifest.xml e ApplicationManifest.xml
-                // viene popolato automaticamente quando si compila questo progetto.
-                // Per altre informazioni, vedere http://aka.ms/servicefabricactorsplatform
+                // This line registers an Actor Service to host the actor class with the Service Fabric runtime.
+                // The contents of the ServiceManifest.xml and ApplicationManifest.xml files
+                // is automatically populated when you build this project.
+                // For more information, see http://aka.ms/servicefabricactorsplatform
+
 
                 ActorRuntime.RegisterActorAsync<Player>(
                    (context, actorType) => new ActorService(context, actorType, (a,b) => new Player(a,b))).GetAwaiter().GetResult();

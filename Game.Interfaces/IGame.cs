@@ -8,8 +8,8 @@ using Microsoft.ServiceFabric.Actors;
 namespace Game.Interfaces
 {
     /// <summary>
-    /// Questa interfaccia consente di definire i metodi esposti da un actor.
-    /// I client usano questa interfaccia per interagire con l'actor che la implementa.
+    /// This interface allows you to define the methods exposed by an actor.
+    /// Clients use this interface to interact with the actor that implements it.
     /// </summary>
     public interface IGame : IActor
     {

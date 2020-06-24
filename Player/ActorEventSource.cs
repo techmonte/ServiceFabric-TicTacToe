@@ -16,15 +16,15 @@ namespace Player
 
         static ActorEventSource()
         {
-            // Soluzione alternativa per il problema della mancata verifica delle attività ETW fino all'inizializzazione dell'infrastruttura delle attività.
-            // Questo problema verrà corretto in .NET Framework 4.6.2.
-            Task.Run(() => { });
+            // Workaround for the problem of not verifying ETW tasks until the task infrastructure is initialized.
+            // This issue will be corrected in the.NET Framework 4.6.2.
+           Task.Run(() => { });
         }
 
-        // Per applicare la semantica del singleton, il costruttore di istanze è privato
+        // To apply singleton semantics, the instance constructor is private
         private ActorEventSource() : base() { }
 
-        #region Parole chiave
+        #region Keywords
         // È possibile usare le parole chiave degli eventi per organizzare gli eventi in categorie. 
         // Ogni parola chiave è un flag di bit. Un singolo evento può essere associato a più parole chiave tramite la proprietà EventAttribute.Keywords.
         // È necessario definire le parole chiave come classe pubblica denominata 'Keywords' all'interno dell'elemento EventSource in cui vengono usate.
@@ -34,7 +34,7 @@ namespace Player
         }
         #endregion
 
-        #region Eventi
+        #region Events
         // Definire un metodo di istanza per ogni evento da registrare e al quale applicare un attributo [Event].
         // Il nome del metodo corrisponde al nome dell'evento.
         // Passare tutti i parametri che si vuole registrare con l'evento. Sono consentiti solo tipi integer primitivi, DateTime, Guid e string.
@@ -150,7 +150,7 @@ namespace Player
         }
         #endregion
 
-        #region Metodi privati
+        #region Private Method
 #if UNSAFE
             private int SizeInBytes(string s)
             {

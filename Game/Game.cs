@@ -11,12 +11,12 @@ using Game.Interfaces;
 namespace Game
 {
     /// <remarks>
-    /// Questa classe rappresenta un actor.
-    /// Ogni ActorID è associato a un'istanza di questa classe.
-    /// L'attributo StatePersistence determina la persistenza e la replica dello stato dell'actor:
-    ///  - Persisted: lo stato viene scritto su disco e replicato.
-    ///  - Volatile: lo stato viene mantenuto solo in memoria e replicato.
-    ///  - None: lo stato viene mantenuto solo in memoria e non viene replicato.
+    /// This class represents an actor.
+    /// Each ActorID is associated with an instance of this class.
+    /// The StatePersistence attribute determines the persistence and replication of the actor's state:
+    /// - Persisted: The status is written to disk and replicated.
+    /// - Volatile: The state is kept only in memory and replicated.
+    /// - None: The state is kept only in memory and is not replicated.
     /// </remarks>
     [StatePersistence(StatePersistence.Persisted)]
     internal class Game : Actor, IGame
@@ -26,8 +26,8 @@ namespace Game
         }
 
         /// <summary>
-        /// Questo metodo viene chiamato ogni volta che si attiva un actor.
-        /// Un actor viene attivato la prima volta che viene richiamato uno dei relativi metodi.
+        /// This method is called whenever an actor is activated.
+        /// An actor is activated the first time one of its methods is invoked.
         /// </summary>
         protected override Task OnActivateAsync()
         {
